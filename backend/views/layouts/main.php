@@ -36,7 +36,10 @@ DashboardAsset::register($this);
 			</aside>
 			<div class="content-wrapper">
 				<section class="content-header">
-		        	<h1>Dashboard<small>Control panel</small></h1>
+		        	<h1>
+						<?php echo (isset($this->params['moduleName'])?$this->params['moduleName']:'no title') ?>
+						<small><?php //echo $this->params['subModuleName']; ?></small>
+					</h1>
 		          	<ol class="breadcrumb">
 		            	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 		            	<li class="active">Dashboard</li>

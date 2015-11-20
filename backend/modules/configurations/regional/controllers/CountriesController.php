@@ -14,6 +14,12 @@ use yii\data\ActiveDataProvider;
  */
 class CountriesController extends Controller
 {
+	public function init()
+	{
+		parent::init();
+		$this->view->params['moduleName'] = 'Configuration';
+		$this->view->params['subModuleName'] = 'Regional';
+	}
     public function behaviors()
     {
         return [

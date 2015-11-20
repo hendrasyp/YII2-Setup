@@ -8,19 +8,13 @@ CountriesAsset::register($this);
 /* @var $searchModel common\models\MtCountriesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Countries');
+$this->title = Yii::t('app', 'Regional > Countries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mt-countries-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Lists'), ['index'], ['class' => 'btn btn-info']) ?>
-        <?= Html::a(Yii::t('app', 'Create Countries'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Trash'), ['trash'], ['class' => 'btn btn-warning']) ?>
-    </p>
-
+<div class="box box-primary">
+	<?php echo yii\base\View::render('_menu') ?>
+    <?//= $this->renderPartial( '_menu'); ?>
+	<div class="box-body mt-countries-index">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -33,4 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		'showFooter' => true,
     ]); ?>
 
+	</div>
 </div>
+
+

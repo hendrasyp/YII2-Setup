@@ -30,6 +30,7 @@ class DashboardAsset extends AssetBundle
 		'plugins/daterangepicker/daterangepicker-bs3.css',
 		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         'css/site.css',
+		'css/mycustoms.css',
     ];
     public $js = [
 		'js/bootstrap.min.js',
