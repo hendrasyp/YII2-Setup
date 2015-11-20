@@ -194,7 +194,7 @@ $this->title = 'My Yii Application';
           </div>
         </div>
       </div>
-    </div><img src="http://www.ten28.com/fref.jpg"> 
+    </div><img src="http://placehold.it/653x211"> 
   </div>
 </section>
 
