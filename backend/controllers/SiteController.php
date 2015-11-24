@@ -56,6 +56,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+		//Yii::$app->cache->flush();
+		//Yii::$app->cache->gc();
 		$model = new Sysmenus();
 		$model = $model->find()->all();
 		return $this->render('index',['model_menu'=>$model]);

@@ -18,6 +18,9 @@ return [
 							'regional' => [
 									'class' => 'backend\modules\configurations\regional\Regional',
 							],
+							'relationships' => [
+								'class' => 'backend\modules\configurations\relationships\Relationships',
+							],
 						],
         ],
     ],

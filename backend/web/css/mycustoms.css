@@ -4,3 +4,11 @@ h3.box-title {
     float: left;
     margin-right: 10px !important;
 }
+.sidebar-menu .treeview-menu>li
+{
+	margin-left:20px;
+}
+.sidebar-menu .treeview-menu>li>ul>li
+{
+	margin-left:5px;
+}

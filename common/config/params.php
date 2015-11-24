@@ -14,54 +14,91 @@
 		'adminmenus'=>[
 			[
 				'menu_name'=>'Dashboard',
+				'menu_id'=>'dashboard',
 				'menu_title'=>'Dashboard',
 				'menu_icon_class'=>'fa fa-dashboard',
-				'menu_url'=>'#',
+				'menu_url'=>'#1',
 				'menu_has_child'=>[],
 			],
 			[
 				'menu_name'=>'Configurations',
+				'menu_id'=>'configurations',
 				'menu_title'=>'Configurations',
 				'menu_icon_class'=>'fa fa-gear',
 				'menu_url'=>'#',
 				'menu_has_child'=>[
 					[
 						'parent_menu_name'=>'Regional',
+						'menu_icon_class'=>'fa fa-map-marker',
+						'menu_url'=>'#',
+						'menu_id'=>'regional',
 						'submenu'=>[
 							[
 								'name'=>'Countries',
-								'url'=>'configuration/regionals/countries',
+								'menu_id'=>'countries',
+								'menu_icon_class'=>'fa fa-link',
+								'url'=>'countries',
 							],
 							[
 								'name'=>'Province',
-								'url'=>'#',
+								'menu_id'=>'provinces',
+								'menu_icon_class'=>'fa fa-link',
+								'url'=>'provinces',
 							],
 							[
 								'name'=>'Cities',
-								'url'=>'#',
+								'menu_id'=>'cities',
+								'menu_icon_class'=>'fa fa-link',
+								'url'=>'cities',
 							],
 						],
 					],
 					[
 						'parent_menu_name'=>'Relationship',
+						'menu_url'=>'#',
+						'menu_id'=>'relationships',
+						'menu_icon_class'=>'fa fa-link',
+						'menu_id'=>'relationships',
 						'submenu'=>[
 							[
 								'name'=>'Supplier',
+								'menu_id'=>'supplier',
+								'menu_icon_class'=>'fa fa-link',
 								'url'=>'#',
 								'submenu'=>[
 									[
 										'name'=>'Jenis Supplier',
-										'url'=>'#',
+										'menu_icon_class'=>'fa fa-link',
+										'menu_id'=>'jenissupplier',
+										'url'=>'jenissuppliers',
 									],
 									[
 										'name'=>'Supplier',
-										'url'=>'#',
+										'menu_id'=>'supplier',
+										'menu_icon_class'=>'fa fa-link',
+										'url'=>'suppliers',
 									],
 								],
 							],
 							[
-								'name'=>'Member',
+								'name'=>'Membership',
+								'menu_icon_class'=>'fa fa-link',
+								'menu_id'=>'memberships',
 								'url'=>'#',
+								'submenu'=>[
+									[
+										'name'=>'Member',
+										'menu_id'=>'member',
+										'menu_icon_class'=>'fa fa-link',
+										'url'=>'members',
+									],
+									[
+										'name'=>'Jenis Member',
+										'menu_id'=>'jenismember',
+										'menu_icon_class'=>'fa fa-link',
+										'url'=>'membertypes',
+									],
+								],
 							],
 						],
 					],
