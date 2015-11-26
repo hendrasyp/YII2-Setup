@@ -8,7 +8,7 @@ use common\models\MtcitiesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\data\ActiveDataProvider;
 /**
  * CitiesController implements the CRUD actions for Mtcities model.
  */
@@ -26,10 +26,62 @@ class CitiesController extends Controller
         ];
     }
 
-    /**
-     * Lists all Mtcities models.
-     * @return mixed
-     */
+    public function actionDeleteall()
+		{
+			$request = Yii::$app->request;
+			if ($request->isPost)
+			{
+				$postID = Yii::$app->request->post('row_id');
+				foreach ($postID as $rowId)
+				{
+					$model=$this->findModel($rowId);
+					$model->city_updated=date("Y-m-d");
+					$model->city_status='INACTIVE';
+					$model->save();
+				}
+				return $this->redirect(['index']);
+				//Yii::$app->session->setFlash('warning', 'Sukses');
+        //return $this->redirect(['index']);
+				
+			}
+		}
+		public function actionTrash()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Mtcities::find()->where(['city_status'=>'INACTIVE']),
+        ]);
+        $searchModel = new MtcitiesSearch();
+        return $this->render('trash', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+		
+		public function actionRestore($id)
+    {
+			$request = Yii::$app->request;
+			if ($request->isGet)
+			{
+				$model=$this->findModel($id);
+				$model->city_updated=date("Y-m-d");
+				$model->city_status='ACTIVE';
+				Yii::$app->session->setFlash('success', 'di Restore');
+				$model->save();
+			}else{
+				die('cheating huh ?');
+			}
+					//$this->findModel($id)->delete();
+			$model = Mtcities::find()->where(['city_status'=>'INACTIVE'])->all();
+			if (sizeof($model)==0)
+			{
+				return $this->redirect(['index']);
+			}
+			else
+			{
+				return $this->redirect(['trash']);
+			}
+    }
+
     public function actionIndex()
     {
         $searchModel = new MtcitiesSearch();
@@ -63,9 +115,10 @@ class CitiesController extends Controller
         $model = new Mtcities();
 
         if ($model->load(Yii::$app->request->post())) {
-			$model->country_created=date("Y-m-d");
-			$model->save();
-            return $this->redirect(['view', 'id' => $model->city_id]);
+						$model->city_created=date("Y-m-d");
+						$model->city_updated=date("Y-m-d");
+						$model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -81,17 +134,16 @@ class CitiesController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post())) {
-			$model->country_created=date("Y-m-d");
-			$model->save();
-            return $this->redirect(['view', 'id' => $model->city_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+			$model = $this->findModel($id);
+			if ($model->load(Yii::$app->request->post())) {
+				$model->city_updated=date("Y-m-d");
+				$model->save();
+				return $this->redirect(['index']);
+			} else {
+				return $this->render('update', [
+					'model' => $model,
+				]);
+			}
     }
 
     /**
@@ -102,13 +154,24 @@ class CitiesController extends Controller
      */
     public function actionDelete($id)
     {
-		$model=$this->findModel($id);
-		if($model->load(Yii::$app->request->get()))
+			$request = Yii::$app->request;
+		//$model=$this->findModel($id);
+		if ($request->isPost)
 		{
-			$model->country_update=date("Y-m-d");
-			$model->country_status='INACTIVE';
+			$model=$this->findModel($id);
+			$model->city_updated=date("Y-m-d");
+			$model->city_status='INACTIVE';
+			Yii::$app->session->setFlash('warning', 'di Hapus');
 			$model->save();
+		}else{
+				die('cheating huh ?');
 		}
+		// if($model->load(Yii::$app->request->post()))
+		// {
+			// $model->city_update=date("Y-m-d");
+			// $model->city_status='INACTIVE';
+			// $model->save();
+		// }
         //$this->findModel($id)->delete();
 
         return $this->redirect(['index']);

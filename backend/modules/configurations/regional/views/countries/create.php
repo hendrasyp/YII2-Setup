@@ -12,10 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="box box-primary">
-	<?php echo yii\base\View::render('_menu') ?>
-	<div class="box-body mt-countries-create">
+	<?php echo yii\base\View::render('_menu',['title'=>'Create Country']) ?>
+	
 		<?= $this->render('_form', [
 			'model' => $model,
 		]) ?>
-	</div>
 </div>

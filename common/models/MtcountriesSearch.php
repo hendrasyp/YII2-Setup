@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\MtCountries;
+use common\models\Mtcountries;
 
 /**
- * MtCountriesSearch represents the model behind the search form about `common\models\MtCountries`.
+ * MtcountriesSearch represents the model behind the search form about `common\models\Mtcountries`.
  */
-class MtCountriesSearch extends MtCountries
+class MtcountriesSearch extends Mtcountries
 {
     /**
      * @inheritdoc
@@ -19,8 +19,7 @@ class MtCountriesSearch extends MtCountries
     {
         return [
             [['country_id'], 'integer'],
-            //[['country_name', 'country_created', 'country_updated', 'country_status'], 'safe'],
-            [['country_name'], 'safe'],
+            [['country_name', 'country_created', 'country_updated', 'country_status'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class MtCountriesSearch extends MtCountries
      */
     public function search($params)
     {
-        $query = MtCountries::find();
+        $query = Mtcountries::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,13 +57,13 @@ class MtCountriesSearch extends MtCountries
 
         $query->andFilterWhere([
             'country_id' => $this->country_id,
-            //'country_created' => $this->country_created,
-            //'country_updated' => $this->country_updated,
+            'country_created' => $this->country_created,
+            'country_updated' => $this->country_updated,
             'country_status' => 'ACTIVE',
         ]);
 
-        $query->andFilterWhere(['like', 'country_name', $this->country_name]);
-            //->andFilterWhere(['like', 'country_status', $this->country_status]);
+        $query->andFilterWhere(['like', 'country_name', $this->country_name])
+            ->andFilterWhere(['like', 'country_status', $this->country_status]);
 
         return $dataProvider;
     }

@@ -11,7 +11,7 @@ $submodule_name = $MODULE_OBJECT->id;
 
 <section class="sidebar">
     <ul class="sidebar-menu">
-        <li class="header"><?php echo $controllers_name; ?>MAIN NAVIGATION <?php print_r(Yii::$app->controller->module) ?></li>
+        <li class="header">MAIN NAVIGATION</li>
         <?php foreach ($adminmenus as $key => $menu): ?>
   <?php $firstchild = $menu['menu_has_child']; ?>
   <?php if (!empty($firstchild)) { ?>

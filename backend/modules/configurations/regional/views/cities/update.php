@@ -12,12 +12,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mtcities'), 'url' =>
 $this->params['breadcrumbs'][] = ['label' => $model->city_id, 'url' => ['view', 'id' => $model->city_id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="mtcities-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class="box box-primary mtcities-update">
+	<?php echo yii\base\View::render('_menu',['title'=>'Edit City']) ?>
+	<div class="box-body mt-mtcities-update">
+		<?= $this->render('_form', [
+			'model' => $model,
+		]) ?>
+	</div>
 </div>

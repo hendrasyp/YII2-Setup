@@ -46,8 +46,19 @@ DashboardAsset::register($this);
 		          	</ol>
 		        </section>
 		        <section class="content">
-	        		<?= $content ?>
-		        </section>
+						
+						<?php $flashType = Yii::$app->session->getAllFlashes(); ?>
+						<?php if (sizeof($flashType)>0): ?>
+						<?php foreach ($flashType as $flashKey=>$flashValue): ?>
+							<div class="alert alert-<?php echo ($flashKey=='error'?'danger':$flashKey);?> alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+								<p><?php echo Yii::$app->session->getFlash($flashKey); ?></p>
+              </div>
+						<?php endforeach;?>
+						<?php endif; ?>
+						
+	        	<?= $content ?>
+						</section>
 			</div>
 			<footer class="main-footer">
 	        	<div class="pull-right hidden-xs">

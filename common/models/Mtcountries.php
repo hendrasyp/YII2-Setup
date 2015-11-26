@@ -14,6 +14,7 @@ use Yii;
  * @property string $country_status
  *
  * @property Mtcities[] $mtcities
+ * @property Mtprovinces[] $mtprovinces
  */
 class Mtcountries extends \yii\db\ActiveRecord
 {
@@ -58,6 +59,14 @@ class Mtcountries extends \yii\db\ActiveRecord
     public function getMtcities()
     {
         return $this->hasMany(Mtcities::className(), ['city_country_id' => 'country_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMtprovinces()
+    {
+        return $this->hasMany(Mtprovinces::className(), ['province_country_id' => 'country_id']);
     }
 
     /**

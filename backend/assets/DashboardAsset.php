@@ -19,8 +19,10 @@ class DashboardAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/bootstrap.min.css',
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
+        'css/font-awesome.css',
+        //'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
         'dist/css/ionicons.min.css',
+        'css/font-googleapis.css',
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/_all-skins.min.css',
 		'plugins/iCheck/flat/blue.css',

@@ -19,7 +19,7 @@ class MtcitiesSearch extends Mtcities
     {
         return [
             [['city_id', 'city_country_id'], 'integer'],
-            [['city_name', 'city_created', 'city_updated', 'city_status'], 'safe'],
+            [['city_country_id','city_province_id','city_name'], 'safe'],
         ];
     }
 
@@ -54,16 +54,20 @@ class MtcitiesSearch extends Mtcities
             // $query->where('0=1');
             return $dataProvider;
         }
+				$query->joinWith('cityProvince');
+				$query->joinWith('cityCountry');
 
         $query->andFilterWhere([
             'city_id' => $this->city_id,
             'city_created' => $this->city_created,
             'city_updated' => $this->city_updated,
-            'city_country_id' => $this->city_country_id,
+            'city_status' => 'ACTIVE',
         ]);
 
         $query->andFilterWhere(['like', 'city_name', $this->city_name])
-            ->andFilterWhere(['like', 'city_status', $this->city_status]);
+            ->andFilterWhere(['like', 'city_status', $this->city_status])
+            ->andFilterWhere(['like', 'mtcountries.country_name', $this->city_country_id])
+            ->andFilterWhere(['like', 'mtprovinces.province_name', $this->city_province_id]);
 
         return $dataProvider;
     }

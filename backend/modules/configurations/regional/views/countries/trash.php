@@ -12,32 +12,34 @@ $this->title = Yii::t('app', 'Countries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-primary">
-	<?php echo yii\base\View::render('_menu') ?>
+	<?php echo yii\base\View::render('_menu',['title'=>'Deleted Countries']) ?>
     <?//= $this->renderPartial( '_menu'); ?>
 	<div class="box-body mt-countries-trash">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
+				'layout'=>"{items}\n{summary}",
+				'tableOptions' =>['class' => 'table table-striped table-bordered'],
+				'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'country_name',
             [
-				'class' => 'yii\grid\ActionColumn',
-				'header'=>'Action',
-				'template'=>'{restore}',
-				'buttons'=>[
-					'restore' => function ($url, $model) {
-						return Html::a('<span class="fa fa-reply"></span>', $url, [
-									'title' => Yii::t('app', 'Restore'),
-						]);
-					}
-				],
-				'urlCreator' => function ($action, $model, $key, $index) {
-					if ($action === 'restore') {
-						$url = Yii::$app->urlManager->createUrl('configurations/regional/countries/restore?id='.$model->country_id); // your own url generation logic
-						return $url;
-					}
-				}
-			],
+							'class' => 'yii\grid\ActionColumn',
+							'header'=>'Action',
+							'template'=>'{restore}',
+							'buttons'=>[
+								'restore' => function ($url, $model) {
+									return Html::a('<span class="fa fa-reply"></span>', $url, [
+												'title' => Yii::t('app', 'Restore'),
+									]);
+								}
+							],
+							'urlCreator' => function ($action, $model, $key, $index) {
+								if ($action === 'restore') {
+									$url = Yii::$app->urlManager->createUrl('configurations/regional/countries/restore?id='.$model->country_id); // your own url generation logic
+									return $url;
+								}
+							}
+						],
         ],
     ]); ?>
 
