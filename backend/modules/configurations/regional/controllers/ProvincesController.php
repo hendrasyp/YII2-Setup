@@ -7,6 +7,7 @@ use common\models\Mtprovinces;
 use common\models\MtprovincesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 
 /**
@@ -81,7 +82,9 @@ class ProvincesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Mtprovinces();
+			if (Yii::$app->user->can('create-countries'))
+			{
+				$model = new Mtprovinces();
 
         if ($model->load(Yii::$app->request->post())) {
 					$model->province_created = date('Y-m-d h:i:s');
@@ -94,6 +97,12 @@ class ProvincesController extends Controller
                 'model' => $model,
             ]);
         }
+			}
+			else
+			{
+				throw new ForbiddenHttpException; 
+			}
+        
     }
 
     /**

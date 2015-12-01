@@ -25,6 +25,10 @@ return [
         ],
     ],
     'components' => [
+		'authManager'=>[
+			'class'=>'yii\rbac\Dbmanager',
+			'defaultRoles'=>['guest'],
+		],
 		'request'=>[
 			'class' => 'common\components\Request',
 			'web'=> '/backend/web',

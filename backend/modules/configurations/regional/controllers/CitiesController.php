@@ -22,6 +22,19 @@ class CitiesController extends Controller
                 'actions' => [
                     'delete' => ['post'],
                 ],
+								'rules' => [
+										// deny all POST requests
+										[
+												'allow' => false,
+												'verbs' => ['POST']
+										],
+										// allow authenticated users
+										[
+												'allow' => true,
+												'roles' => ['@'],
+										],
+										// everything else is denied
+								],
             ],
         ];
     }

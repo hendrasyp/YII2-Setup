@@ -53,13 +53,24 @@ class LoginForm extends Model
      *
      * @return boolean whether the user is logged in successfully
      */
+		public function getuserCompany()
+    {
+        //$company = User::findAllByAttributes(['company_id'])
+				return $this->hasMany(Companies::className(), ['company_id' => 'company_id']);
+    }
+		
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        } else {
-            return false;
-        }
+			if ($this->validate()) 
+			{
+				$userInfo = $this->getUser();
+				$userCompany = $userInfo['company_id'];
+				//echo $userCompany;
+				//die();
+				return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+			} else {
+				return false;
+			}
     }
 
     /**

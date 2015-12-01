@@ -7,6 +7,7 @@ use common\models\Mtcountries;
 use common\models\MtcountriesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
@@ -91,7 +92,9 @@ class CountriesController extends Controller
 
     public function actionCreate()
     {
-        $model = new Mtcountries();
+			if (Yii::$app->user->can('create-countries'))
+			{
+				$model = new Mtcountries();
 
         if ($model->load(Yii::$app->request->post())) {
             $model->country_created=$model->country_updated = date('Y-m-d');
@@ -106,6 +109,12 @@ class CountriesController extends Controller
                 'model' => $model,
             ]);
         }
+			}
+			else
+			{
+				throw new ForbiddenHttpException; 
+			}
+        
     }
 
     public function actionUpdate($id)

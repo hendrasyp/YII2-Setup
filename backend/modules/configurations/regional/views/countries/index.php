@@ -72,8 +72,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				'depends'=>
 					[backend\assets\DashboardAsset::className()],
 			],\yii\web\View::POS_END);
-    
-
 ?>
 
 
